@@ -1,0 +1,10 @@
+[all]
+#here goes the hots ip
+
+#generate inventory
+
+echo "[all]" > inventory
+
+# Command to append public ip adresses to inventory file
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --output text >> inventory
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress'  --filters "Name=tag:Project,Values=udacity" --output text >> inventory
